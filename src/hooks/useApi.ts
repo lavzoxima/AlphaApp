@@ -1,12 +1,12 @@
-import {useCallback} from 'react';
+import { useCallback } from 'react';
 import axios from 'axios';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Files
-import {BASE_URL} from '../constants/api';
-import {setTokens, signOut} from '../redux/auth';
-import {getUtcOffset} from '../utils/domUtils';
-import {Alert} from 'react-native';
+import { BASE_URL } from '../constants/api';
+import { setTokens, signOut } from '../redux/auth';
+import { getUtcOffset } from '../utils/domUtils';
+import { Alert } from 'react-native';
 
 const getInstance = ({
   tokens,
@@ -15,6 +15,7 @@ const getInstance = ({
   customUrl,
   url,
   KeyId,
+
 }: any) => {
   const instance = axios.create({
     baseURL: customUrl ? url : BASE_URL,
@@ -111,6 +112,7 @@ const useApi = () => {
       url,
       data,
       params = {},
+      requestArray = []
     }: any) => {
       const instance = getInstance({
         tokens,
@@ -144,6 +146,7 @@ const useApi = () => {
 
           case 'GET': {
             let res = await instance.get(url);
+
             return res;
           }
 
@@ -159,7 +162,7 @@ const useApi = () => {
     [logOut, setToken, tokens],
   );
 
-  return {apiCall};
+  return { apiCall };
 };
 
 export default useApi;

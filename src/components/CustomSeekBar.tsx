@@ -1,11 +1,11 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {StyleSheet, Animated, Text, Platform} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { StyleSheet, Animated, Text, Platform } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Files
-import {updatedShowModal} from '../redux/common';
-import {fonts} from '../theme';
-import {getScreenHeight} from '../utils/domUtils';
+import { updatedShowModal } from '../redux/common';
+import { fonts } from '../theme';
+import { getScreenHeight } from '../utils/domUtils';
 
 const CustomSeekBar = () => {
   const theme = useSelector((state: any) => state.colors.theme);
@@ -28,7 +28,7 @@ const CustomSeekBar = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch(updatedShowModal({show: false, message: '', type: ''}));
+      dispatch(updatedShowModal({ show: false, message: '', type: '' }));
     }, 2000);
   }, [dispatch]);
 

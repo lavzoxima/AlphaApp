@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import {
   Modal,
   StyleSheet,
@@ -8,10 +8,10 @@ import {
   ActivityIndicator,
   StatusBar,
 } from 'react-native';
-import {useSelector} from 'react-redux';
-import {strings} from '../constants';
-import {fonts} from '../theme';
-import {getScreenHeight, getScreenWidth} from '../utils/domUtils';
+import { useSelector } from 'react-redux';
+import { strings } from '../constants';
+import { fonts } from '../theme';
+import { getScreenHeight, getScreenWidth } from '../utils/domUtils';
 
 const CustomLoadingModal = (props: any) => {
   const theme = useSelector((state: any) => state.colors.theme);
@@ -60,7 +60,7 @@ const createStyles = (theme: any) =>
       alignItems: 'center',
     },
     title: {
-      fontFamily: fonts.medium,
+      // fontFamily: ,
       color: theme.textColor,
       marginLeft: getScreenHeight(1),
     },

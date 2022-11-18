@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useDispatch, useSelector } from 'react-redux';
 import NetInfo from '@react-native-community/netinfo';
 
 // Files
-import {setLoading, updateInternet} from '../redux/common';
+import { setLoading, updateInternet } from '../redux/common';
 import {
   CustomLoadingModal,
   CustomSeekBar,
@@ -22,29 +22,15 @@ const MainStack = () => {
   const internet = useSelector((state: any) => state.common.is_internet);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const removeNetInfoSubscription = NetInfo.addEventListener(state => {
-      const offline = !(state.isConnected && state.isInternetReachable);
-      if (!offline) {
-        dispatch(updateInternet(true));
-        dispatch(setLoading(false));
-        // 'Internet Working'
-      } else {
-        dispatch(updateInternet(false));
-        // 'Internet Not Working'
-      }
-    });
 
-    return () => removeNetInfoSubscription();
-  }, [dispatch]);
 
   return (
     <>
-      {internet && loading ? <CustomLoadingModal /> : null}
+      {loading ? <CustomLoadingModal /> : null}
       {modalStatus.show ? <CustomSeekBar /> : null}
-      <InternetConnection is_internet={internet} />
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        {auth ? (
+
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {!auth ? (
           <Stack.Screen name="HomeStack" component={HomeStack} />
         ) : (
           <Stack.Screen name="AuthStack" component={AuthStack} />
